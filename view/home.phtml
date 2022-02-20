@@ -1,1 +1,24 @@
-<p>home</p>
+<?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+    <div class="home_page">
+        <aside>
+            <ul>
+                <li>mon profil</li>
+                <li class="destroy_session">déconnexion</li>
+            </ul>
+        </aside>
+        <hr>
+        <div class="main">
+            <ul>
+                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit necessitatibus veniam nam, eum nobis distinctio vel fugit praesentium vitae officiis, voluptate dolore unde hic, modi doloremque ea perspiciatis aut iusto.</li>
+            </ul>
+        </div>
+    </div>
+<?php else : ?>
+    <div class="connexion_form">
+        <form action="index.php?page=connect_user" method="POST">
+            <input type="text" placeholder="login" name="login" required>
+            <input type="password" placeholder="password" name="password" required>
+            <button>connexion</button>
+        </form>
+    </div>
+<?php endif; ?>

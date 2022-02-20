@@ -11,10 +11,24 @@
 </head>
 
 <body>
+
+    <nav>
+        <ul>
+            <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+                <li><a href="index.php?page=home">acceuil</a></li>
+                <li><a href="index.php?page=home">paramètres</a></li>
+            <?php else : ?>
+                <li><a href="index.php?page=home">acceuil</a></li>
+                <li><a class="connexion_button">connexion</a></li>
+                <li><a class="create_account_button">créer un compte</a></li>
+            <?php endif; ?>
+
+        </ul>
+    </nav>
+    <a class="open_nav_button">X</a>
     <main>
         <?php include $template . ".phtml"; ?>
     </main>
-
     <script src="view/js/script.js"></script>
 </body>
 
