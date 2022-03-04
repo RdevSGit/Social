@@ -1,0 +1,12 @@
+<?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+<?php else : ?>
+    <div id="create_account_form">
+        <label for="pseudo">pseudo</label>
+        <input type="text" placeholder="pseudo" class="pseudo_creation" required>
+        <label for="email">email</label>
+        <input name="email" type="email" placeholder="email" class="email_creation" required>
+        <label for="password">password</label>
+        <input name="password" type="password" placeholder="password" class="password_creation" required>
+        <button class="button_create_account">send</button>
+    </div>
+<?php endif; ?>

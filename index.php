@@ -7,20 +7,31 @@ require("config/Database.class.php");
 
 //appel des controllers
 require("controller/MainController.class.php");
-require("controller/UserControlle.class.php");
+require("controller/UserController.class.php");
 //instanciation des classes
 $MainController = new MainController();
-$UserController = new UserController();
+$Usercontroller = new Usercontroller();
+
 
 if (isset($_GET["page"])) {
     switch ($_GET['page']) {
-        case "home":
-            $MainController->ShowHomePage();
+        case 'connexion_page':
+            $Usercontroller->ConnexionPage();
             break;
-        case 'connect_user':
-            $UserController->ConnectUser();
+        case 'create_account_page':
+            $Usercontroller->CreateAccountPage();
             break;
+        case 'home':
+            $MainController->HomePage();
+            break;
+        case 'destroy_session':
+            $Usercontroller->DestroySession();
+            break;
+        case 'profil':
+            $Usercontroller->ProfilPage();
+            break;
+
     }
 } else {
-    $MainController->ShowHomePage();
+    $MainController->HomePage();
 }

@@ -12,7 +12,7 @@ class MainController
         $this->mainmodel = new MainModel();
     }
 
-    public function ShowHomePage()
+    public function HomePage()
     {
         $template = "home";
         include "view/layout.phtml";

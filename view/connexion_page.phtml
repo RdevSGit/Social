@@ -1,0 +1,8 @@
+<?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+<?php else : ?>
+    <div id="connexion_account_form">
+        <input type="email" name="email" placeholder="email" class="email_connexion">
+        <input type="password" name="password" placeholder="password" class="password_connexion">
+        <button class="button_connexion_account">send</button>
+    </div>
+<?php endif; ?>

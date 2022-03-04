@@ -10,11 +10,19 @@ class UserModel
         $this->bdd = $this->bdd->getBdd();
     }
 
-    public function Verify($login)
+    public function UserInfo($id)
     {
-        $query = $this->bdd->prepare("SELECT login, password FROM user WHERE login = ?");
-        $query->execute(array($login));
-        $user = $query->fetch();
-        return $user;
+        $query = $this->bdd->prepare("SELECT * FROM users WHERE id = ?");
+        $query->execute(array($id));
+        $user_info = $query->fetch();
+        return $user_info;
+    }
+
+    public function UserFriends($id)
+    {
+        $query = $this->bdd->prepare("SELECT * FROM users WHERE id != ?");
+        $query->execute(array($id));
+        $user_friends = $query->fetchAll();
+        return $user_friends;
     }
 }
