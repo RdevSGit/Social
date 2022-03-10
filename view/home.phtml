@@ -8,6 +8,11 @@
 
 <?php if (!empty($_SESSION['id'])) { ?>
     <?php foreach ($posts_list as $pl) : ?>
-        <p><?= $pl['id_user'] ?> <?= $pl['content'] ?></p>
+        <div class="post">
+            <p><?= $pl['pseudo'] ?> <?= $pl['content'] ?></p>
+            <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
+                <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
+            <?php } ?>
+        </div>
     <?php endforeach; ?>
 <?php } ?>

@@ -1,5 +1,9 @@
 "use strict";
 
+
+
+// AJAX
+
 function createAccount() {
   let pseudo = $(".pseudo_creation").val();
   let email = $(".email_creation").val();
@@ -68,7 +72,6 @@ function searchUser() {
 function followOrUnfollow() {
   let id_follower = $(".user_session").attr("value");
   let id_followed = $(this).attr("value");
-
   $.ajax({
     type: "POST",
     url: "view/php/ajax/follow_unfollow.php",
@@ -84,9 +87,9 @@ function followOrUnfollow() {
     this.innerText = "follow";
   }
 }
-function Post() {
-  let content = $(".post_area").val();
 
+function post() {
+  let content = $(".post_area").val();
   $.ajax({
     type: "POST",
     url: "view/php/ajax/post.php",
@@ -94,7 +97,21 @@ function Post() {
       content: content,
     },
     success: function (data) {
-      console.log(data);
+      window.location.reload();
+    },
+  });
+}
+
+function deletePost() {
+  let id = $(this).attr("value");
+  $.ajax({
+    type: "POST",
+    url: "view/php/ajax/delete_post.php",
+    data: {
+      id: id,
+    },
+    success: function (data) {
+      window.location.reload();
     },
   });
 }
@@ -104,5 +121,6 @@ $(function () {
   $(".button_connexion_account").on("click", connexionAccount);
   $("#search_input").on("keyup", searchUser);
   $(".follow_unfollow").on("click", followOrUnfollow);
-  $("#post_button").on("click", Post);
+  $("#post_button").on("click", post);
+  $(".delete_post").on("click", deletePost);
 });

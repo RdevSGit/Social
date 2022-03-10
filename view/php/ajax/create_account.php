@@ -16,9 +16,10 @@ if ($result_email == 0) {
     $verify_pseudo->execute([$pseudo]);
     $result_pseudo = $verify_pseudo->rowCount();
     if ($result_pseudo == 0) {
-        $query = $bdd->prepare("INSERT INTO users (pseudo, email, password) VALUES (?,?,?) select last_insert_id()");
+        $query = $bdd->prepare("INSERT INTO users (pseudo, email, password) VALUES (?,?,?)");
         $query->execute([$pseudo, $email, $hash_bcrypt]);
-
+        $res = $query->fetch();
+        echo $res['id'];
         echo json_encode(0);
     } else {
         echo json_encode(2);

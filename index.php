@@ -33,6 +33,7 @@ if (isset($_GET["page"])) {
         case 'friends_list':
             $Usercontroller->FriendsList();
             break;
+        
 
     }
 } else {

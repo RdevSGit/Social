@@ -1,9 +1,11 @@
 <p>follow</p>
-<?php if (empty($follow_list)){ ?>
+<?php if (empty($follow_list)) { ?>
     <p>vous ne suivez personne</p>
 <?php } ?>
 <?php foreach ($follow_list as $fl) : ?>
-    <ul>
-        <li><a href="index.php?page=profil&amp;id=<?= $fl['id'] ?>"><?= $fl['id'] ?> <?= $fl['pseudo'] ?></a></li>
-    </ul>
+    <?php if ($fl['id'] != $_SESSION['id']) { ?>
+        <ul>
+            <li><a href="index.php?page=profil&amp;id=<?= $fl['id'] ?>"><?= $fl['id'] ?> <?= $fl['pseudo'] ?></a></li>
+        </ul>
+    <?php } ?>
 <?php endforeach ?>
