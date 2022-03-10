@@ -28,8 +28,11 @@ class UserController
     {
         $id = $_SESSION['id'];
         $id_followed = $_GET['id'];
-        $user_info = $this->usermodel->UserInfo($id_followed);
+        $user_info = $this->usermodel->UserInfo($id_followed);  
+        $user_post_list = $this->usermodel->UserPostList($id);
+        $follow_post_list = $this->usermodel->UserPostList($id_followed);
         $user_friends = $this->usermodel->UserFriends($id, $id_followed);
+        
         $template = "profil_page";
         include "view/layout.phtml";
     }

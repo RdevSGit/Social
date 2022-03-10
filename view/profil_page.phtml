@@ -1,6 +1,10 @@
 <p>profil</p>
 <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'] && $_GET["id"] == $_SESSION['id'])) : ?>
     <li><a href="index.php?page=destroy_session"><?= $_SESSION['id'] ?> déconnexion</a></li>
+    <?php foreach ($user_post_list as $upl) : ?>
+        <p><?= $upl['content'] ?></p>
+        <a class="delete_post" value="<?= $upl['id'] ?>">X</a>
+    <?php endforeach; ?>
 <?php else : ?>
     <a href=""><?= $user_info['email'] ?></a>
     <a class="follow_unfollow" value="<?= $user_info['id'] ?>">
@@ -10,4 +14,7 @@
             unfollow
         <?php } ?>
     </a>
+    <?php foreach ($follow_post_list as $fpl) : ?>
+        <p><?= $fpl['content'] ?></p>
+    <?php endforeach; ?>
 <?php endif; ?>

@@ -33,4 +33,13 @@ class UserModel
         $follow_list = $query->fetchAll();
         return $follow_list;
     }
+
+    public function UserPostList($id)
+    {
+
+        $query = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ? ORDER BY date DESC");
+        $query->execute(array($id));
+        $user_post_list = $query->fetchAll();
+        return $user_post_list;
+    }
 }

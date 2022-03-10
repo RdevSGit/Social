@@ -1,7 +1,4 @@
 "use strict";
-
-
-
 // AJAX
 
 function createAccount() {
@@ -49,7 +46,7 @@ function connexionAccount() {
 }
 
 function searchUser() {
-  let input = this.value;
+  let input = this.value.trim();
   $.ajax({
     type: "GET",
     url: "view/php/ajax/search_user.php",
@@ -88,19 +85,21 @@ function followOrUnfollow() {
   }
 }
 
-function post() {
-  let content = $(".post_area").val();
-  $.ajax({
-    type: "POST",
-    url: "view/php/ajax/post.php",
-    data: {
-      content: content,
-    },
-    success: function (data) {
-      window.location.reload();
-    },
-  });
-}
+// function post() {
+//   let content = $(".post_area").val();
+//   if (content.trim() != "") {
+//     $.ajax({
+//       type: "POST",
+//       url: "view/php/ajax/post.php",
+//       data: {
+//         content: content,
+//       },
+//       success: function (data) {
+//         window.location.reload();
+//       },
+//     });
+//   }
+// }
 
 function deletePost() {
   let id = $(this).attr("value");
@@ -121,6 +120,6 @@ $(function () {
   $(".button_connexion_account").on("click", connexionAccount);
   $("#search_input").on("keyup", searchUser);
   $(".follow_unfollow").on("click", followOrUnfollow);
-  $("#post_button").on("click", post);
+  // $("#post_button").on("click", post);
   $(".delete_post").on("click", deletePost);
 });

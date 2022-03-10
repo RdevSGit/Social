@@ -33,8 +33,9 @@ if (isset($_GET["page"])) {
         case 'friends_list':
             $Usercontroller->FriendsList();
             break;
-        
-
+        case 'post':
+            $MainController->Post();
+            break;
     }
 } else {
     $MainController->HomePage();
