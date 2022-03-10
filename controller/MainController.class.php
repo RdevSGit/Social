@@ -14,6 +14,10 @@ class MainController
 
     public function HomePage()
     {
+        if (!empty($_SESSION['id'])) {
+            $id = $_SESSION['id'];
+            $posts_list = $this->mainmodel->HomePagePosts($id);
+        }
         $template = "home";
         include "view/layout.phtml";
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,14 @@
     <script src="view/js/jquery.js"></script>
     <title>Titre</title>
 </head>
+
 <body>
     <nav>
         <ul>
             <li><a href="index.php?page=home">acceuil</a></li>
             <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
-                <li><a href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>">mon profil</a></li>
-                <li>Bonjour <?= $_SESSION['user'] ?></li>
+                <li><a href="index.php?page=friends_list&amp;id=<?= $_SESSION['id'] ?>">follow</a></li>
+                <li><a class="user_session" href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>" value="<?= $_SESSION['id'] ?>"> profil de <?= $_SESSION['user'] ?> <?= $_SESSION['id'] ?></a></li>
             <?php else : ?>
                 <li><a href="index.php?page=connexion_page">connexion</a></li>
                 <li><a href="index.php?page=create_account_page">créer un compte</a></li>
@@ -27,4 +29,5 @@
     <script src="view/js/script.js"></script>
     <noscript>Your browser does not support JavaScript!</noscript>
 </body>
+
 </html>

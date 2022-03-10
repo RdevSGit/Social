@@ -18,11 +18,19 @@ class UserModel
         return $user_info;
     }
 
-    public function UserFriends($id)
+    public function UserFriends($id, $id_followed)
     {
-        $query = $this->bdd->prepare("SELECT * FROM users WHERE id != ?");
+        $query = $this->bdd->prepare("SELECT * FROM follow WHERE id_follower = ? AND id_followed = ?");
+        $query->execute(array($id, $id_followed));
+        $result = $query->fetch();
+        return $result;
+    }
+
+    public function Friends($id)
+    {
+        $query = $this->bdd->prepare("SELECT * FROM follow JOIN users on follow.id_followed = users.id WHERE id_follower = ?");
         $query->execute(array($id));
-        $user_friends = $query->fetchAll();
-        return $user_friends;
+        $follow_list = $query->fetchAll();
+        return $follow_list;
     }
 }

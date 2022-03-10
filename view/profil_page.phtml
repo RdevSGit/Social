@@ -1,16 +1,13 @@
 <p>profil</p>
-<p><?= $user_info['email'] ?></p>
-<?php if (isset($_SESSION['id']) && !empty($_SESSION['id'] && $user_info['id'] == $_SESSION['id'])) : ?>
-    <li><a href="index.php?page=destroy_session">déconnexion</a></li>
+<?php if (isset($_SESSION['id']) && !empty($_SESSION['id'] && $_GET["id"] == $_SESSION['id'])) : ?>
+    <li><a href="index.php?page=destroy_session"><?= $_SESSION['id'] ?> déconnexion</a></li>
 <?php else : ?>
-    <li><a href="index.php?page=follow">follow</a></li>
+    <a href=""><?= $user_info['email'] ?></a>
+    <a class="follow_unfollow" value="<?= $user_info['id'] ?>">
+        <?php if (empty($user_friends)) { ?>
+            follow
+        <?php } else { ?>
+            unfollow
+        <?php } ?>
+    </a>
 <?php endif; ?>
-
-
-<!-- <div class="my_friends">
-    <ul>
-        <?php foreach ($user_friends as $user_friend) : ?>
-            <li><a href="index.php?page=profil&amp;id=<?= $user_friend['id'] ?>"><?= $user_friend['email'] ?></a></li>
-        <?php endforeach; ?>
-    </ul>
-</div> -->

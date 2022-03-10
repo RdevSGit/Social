@@ -1,6 +1,13 @@
 <p>acceuil</p>
-
+<textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
+<button id="post_button">post</button>
 <input type="text" id="search_input">
 <div class="result_search_input">
     <ul></ul>
 </div>
+
+<?php if (!empty($_SESSION['id'])) { ?>
+    <?php foreach ($posts_list as $pl) : ?>
+        <p><?= $pl['id_user'] ?> <?= $pl['content'] ?></p>
+    <?php endforeach; ?>
+<?php } ?>

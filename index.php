@@ -30,6 +30,9 @@ if (isset($_GET["page"])) {
         case 'profil':
             $Usercontroller->ProfilPage();
             break;
+        case 'friends_list':
+            $Usercontroller->FriendsList();
+            break;
 
     }
 } else {

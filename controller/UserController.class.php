@@ -26,10 +26,18 @@ class UserController
 
     public function ProfilPage()
     {
-        $id = $_GET['id'];
-        $user_info = $this->usermodel->UserInfo($id);
-        $user_friends = $this->usermodel->UserFriends($id);
+        $id = $_SESSION['id'];
+        $id_followed = $_GET['id'];
+        $user_info = $this->usermodel->UserInfo($id_followed);
+        $user_friends = $this->usermodel->UserFriends($id, $id_followed);
         $template = "profil_page";
+        include "view/layout.phtml";
+    }
+
+    public function FriendsList(){
+        $id = $_GET['id'];
+        $follow_list = $this->usermodel->Friends($id);
+        $template = "follow_list";
         include "view/layout.phtml";
     }
     public function DestroySession()
