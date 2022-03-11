@@ -17,7 +17,6 @@ class MainController
         if (!empty($_SESSION['id'])) {
             $id = $_SESSION['id'];
             $posts_list = $this->mainmodel->HomePagePosts($id);
-            $img_list = $this->mainmodel->HomePageImg();
         }
         $template = "home";
         include "view/layout.phtml";

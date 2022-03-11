@@ -1,25 +1,24 @@
 <p>acceuil</p>
-<!-- <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
-<button id="post_button">post</button> -->
-<form action="index.php?page=post" method="POST" enctype='multipart/form-data'>
-    <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
-    <input type="file" name="fichier">
-    <button id="post_button">post</button>
-</form>
-<input type="text" id="search_input">
-<div class="result_search_input">
-    <ul></ul>
-</div>
 <?php if (!empty($_SESSION['id'])) { ?>
+    <form action="index.php?page=post" method="POST" enctype='multipart/form-data'>
+        <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
+        <input type="file" name="fichier">
+        <button id="post_button">post</button>
+    </form>
+    <input type="text" id="search_input">
+    <div class="result_search_input">
+        <ul></ul>
+    </div>
     <?php foreach ($posts_list as $pl) : ?>
         <div class="post">
             <p><?= $pl['pseudo'] ?> <?= $pl['content'] ?></p>
+            <?php if (!empty($pl['bin'])) { ?>
+                <img src="data:image/jpeg;base64,<?= base64_encode($pl['bin']) ?>" alt="photo">
+            <?php } ?>
             <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
                 <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
             <?php } ?>
         </div>
     <?php endforeach; ?>
-    <?php foreach ($img_list as $img) : ?>
-        <img src="data:image/jpeg;base64,<?= base64_encode($img['bin']) ?>" alt="photo">
-    <?php endforeach; ?>
+
 <?php } ?>
