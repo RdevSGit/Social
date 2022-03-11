@@ -37,4 +37,16 @@ class MainController
         }
         header("location:index.php?page=home");
     }
+
+    public function Comment()
+    {
+        $id_user = $_SESSION['id'];
+        $id_post = $_GET['id_post'];
+        $content = $_POST['comment_input'];
+
+        if (!empty($content)) {
+            $this->mainmodel->CommentPost($id_user, $id_post, $content);
+        }
+        header("location:index.php?page=home");
+    }
 }

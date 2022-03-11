@@ -1,7 +1,5 @@
 <p>follow</p>
-<?php if (empty($follow_list)) { ?>
-    <p>vous ne suivez personne</p>
-<?php } ?>
+
 <?php foreach ($follow_list as $fl) : ?>
     <?php if ($fl['id'] != $_SESSION['id']) { ?>
         <ul>

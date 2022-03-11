@@ -12,11 +12,11 @@ class MainModel
 
     public function HomePagePosts($id)
     {
-        $query = $this->bdd->prepare
-        ("SELECT posts.id as post_id, id_user, content, pseudo , bin FROM posts 
+        $query = $this->bdd->prepare("SELECT posts.id as post_id, id_user, content, pseudo , bin FROM posts 
         JOIN follow ON posts.id_user = follow.id_followed 
         JOIN users on users.id = posts.id_user 
-        LEFT JOIN media on posts.id = media.id_post WHERE id_follower = ? ORDER BY date desc");
+        LEFT JOIN media on posts.id = media.id_post
+        WHERE id_follower = ? ORDER BY date desc");
         $query->execute(array($id));
         $posts_list = $query->fetchAll();
         return $posts_list;
@@ -30,10 +30,17 @@ class MainModel
         $query2 = $this->bdd->prepare("SELECT MAX(id) FROM posts");
         $query2->execute(array());
         $last_id = $query2->fetch();
-       
+
         if (!empty($size)) {
             $query = $this->bdd->prepare("INSERT INTO media (name, size, type, bin, id_post) VALUES (?,?,?,?,?)");
             $query->execute(array($name, $size, $type, file_get_contents($bin), $last_id[0]));
         }
+    }
+
+    public function CommentPost($id_user, $id_post, $content)
+    {
+
+        $query = $this->bdd->prepare("INSERT INTO commentary (content, id_user, id_post) VALUES (?,?,?)");
+        $query->execute(array($content, $id_user, $id_post));
     }
 }

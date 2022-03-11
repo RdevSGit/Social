@@ -22,8 +22,8 @@ class UserModel
     {
         $query = $this->bdd->prepare("SELECT * FROM follow WHERE id_follower = ? AND id_followed = ?");
         $query->execute(array($id, $id_followed));
-        $result = $query->fetch();
-        return $result;
+        $user_friends = $query->fetch();
+        return $user_friends;
     }
 
     public function Friends($id)
@@ -37,7 +37,7 @@ class UserModel
     public function UserPostList($id)
     {
 
-        $query = $this->bdd->prepare("SELECT * FROM posts WHERE id_user = ? ORDER BY date DESC");
+        $query = $this->bdd->prepare("SELECT posts.id as pid , bin , content FROM posts LEFT JOIN media on posts.id = media.id_post WHERE id_user = ? ORDER BY date DESC");
         $query->execute(array($id));
         $user_post_list = $query->fetchAll();
         return $user_post_list;

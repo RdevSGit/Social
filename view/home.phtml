@@ -11,14 +11,19 @@
     </div>
     <?php foreach ($posts_list as $pl) : ?>
         <div class="post">
-            <p><?= $pl['pseudo'] ?> <?= $pl['content'] ?></p>
+            <p><?= $pl['pseudo'] ?></p>
             <?php if (!empty($pl['bin'])) { ?>
                 <img src="data:image/jpeg;base64,<?= base64_encode($pl['bin']) ?>" alt="photo">
             <?php } ?>
+            <p> <?= $pl['content'] ?></p>
+            <form action="index.php?page=comment&amp;id_post=<?= $pl['post_id'] ?>" method="POST">
+                <input type="text" placeholder="votre commentaire" name="comment_input">
+                <button>commenter</button>
+            </form>
+            <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
             <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
                 <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
             <?php } ?>
         </div>
     <?php endforeach; ?>
-
 <?php } ?>

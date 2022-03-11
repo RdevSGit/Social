@@ -32,7 +32,6 @@ class UserController
         $user_post_list = $this->usermodel->UserPostList($id);
         $follow_post_list = $this->usermodel->UserPostList($id_followed);
         $user_friends = $this->usermodel->UserFriends($id, $id_followed);
-        
         $template = "profil_page";
         include "view/layout.phtml";
     }

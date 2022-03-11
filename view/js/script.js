@@ -76,30 +76,11 @@ function followOrUnfollow() {
       id_followed: id_followed,
       id_follower: id_follower,
     },
-    success: function (data) {},
+    success: function (data) {
+      window.location.reload();
+    },
   });
-  if (this.innerText == "follow") {
-    this.innerText = "unfollow";
-  } else {
-    this.innerText = "follow";
-  }
 }
-
-// function post() {
-//   let content = $(".post_area").val();
-//   if (content.trim() != "") {
-//     $.ajax({
-//       type: "POST",
-//       url: "view/php/ajax/post.php",
-//       data: {
-//         content: content,
-//       },
-//       success: function (data) {
-//         window.location.reload();
-//       },
-//     });
-//   }
-// }
 
 function deletePost() {
   let id = $(this).attr("value");
@@ -114,12 +95,33 @@ function deletePost() {
     },
   });
 }
+function showCommentary() {
+  let id = $(this).attr("value");
+
+  $.ajax({
+    type: "GET",
+    url: "view/php/ajax/commentary.php",
+    data: {
+      id: id,
+    },
+    success: function (data) {
+      let parent = $(".show_commentary[value=" + id + "]");
+      $(parent).append(data);
+      if (parent.hasClass("active")) {
+        parent.removeClass("active");
+        parent.children().remove();
+      } else {
+        parent.addClass("active");
+      }
+    },
+  });
+}
 
 $(function () {
   $(".button_create_account").on("click", createAccount);
   $(".button_connexion_account").on("click", connexionAccount);
   $("#search_input").on("keyup", searchUser);
   $(".follow_unfollow").on("click", followOrUnfollow);
-  // $("#post_button").on("click", post);
   $(".delete_post").on("click", deletePost);
+  $(".show_commentary").on("click", showCommentary);
 });

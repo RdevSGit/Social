@@ -36,6 +36,9 @@ if (isset($_GET["page"])) {
         case 'post':
             $MainController->Post();
             break;
+        case 'comment':
+            $MainController->Comment();
+            break;
     }
 } else {
     $MainController->HomePage();
