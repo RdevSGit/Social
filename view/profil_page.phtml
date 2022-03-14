@@ -1,10 +1,19 @@
-<p>profil</p>
 <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'] && $_GET["id"] == $_SESSION['id'])) : ?>
+    <li><?= $_SESSION['user'] ?></li>
     <li><a href="index.php?page=destroy_session"><?= $_SESSION['id'] ?> déconnexion</a></li>
     <?php foreach ($user_post_list as $upl) : ?>
-        <img src="data:image/jpeg;base64,<?= base64_encode($upl['bin']) ?>" alt="">
-        <p><?= $upl['content'] ?></p>
-        <a class="delete_post" value="<?= $upl['pid'] ?>">X</a>
+        <div class="post">
+            <?php if (!empty($upl['bin'])) { ?>
+                <img src="data:image/jpeg;base64,<?= base64_encode($upl['bin']) ?>" alt="">
+            <?php } ?>
+            <p><?= $upl['content'] ?></p>
+            <a class="delete_post" value="<?= $upl['pid'] ?>">X</a>
+            <form action="index.php?page=comment&amp;id_post=<?= $upl['pid'] ?>" method="POST">
+                <input type="text" placeholder="votre commentaire" name="comment_input">
+                <button>commenter</button>
+            </form>
+            <div class="show_commentary" value="<?= $upl['pid'] ?>">afficher les commentaires</div>
+        </div>
     <?php endforeach; ?>
 <?php else : ?>
     <a href=""><?= $user_info['email'] ?></a>
@@ -17,8 +26,15 @@
     </a>
     <?php foreach ($follow_post_list as $fpl) : ?>
         <div class="post">
-            <img src="data:image/jpeg;base64,<?= base64_encode($fpl['bin']) ?>" alt="">
+            <?php if (!empty($fpl['bin'])) { ?>
+                <img src="data:image/jpeg;base64,<?= base64_encode($fpl['bin']) ?>" alt="">
+            <?php } ?>
             <p><?= $fpl['content'] ?></p>
+            <form action="index.php?page=comment&amp;id_post=<?= $fpl['pid'] ?>" method="POST">
+                <input type="text" placeholder="votre commentaire" name="comment_input">
+                <button>commenter</button>
+            </form>
+            <div class="show_commentary" value="<?= $fpl['pid'] ?>">afficher les commentaires</div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>

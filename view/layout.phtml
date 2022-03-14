@@ -16,7 +16,8 @@
             <li><a href="index.php?page=home">acceuil</a></li>
             <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
                 <li><a href="index.php?page=friends_list&amp;id=<?= $_SESSION['id'] ?>">follow</a></li>
-                <li><a class="user_session" href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>" value="<?= $_SESSION['id'] ?>"> profil de <?= $_SESSION['user'] ?> <?= $_SESSION['id'] ?></a></li>
+                <li><a class="user_session" href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>" value="<?= $_SESSION['id'] ?>">profil</a></li>
+                <li class="post_nav_button">poster</li>
             <?php else : ?>
                 <li><a href="index.php?page=connexion_page">connexion</a></li>
                 <li><a href="index.php?page=create_account_page">créer un compte</a></li>

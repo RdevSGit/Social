@@ -47,6 +47,6 @@ class MainController
         if (!empty($content)) {
             $this->mainmodel->CommentPost($id_user, $id_post, $content);
         }
-        header("location:index.php?page=home");
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

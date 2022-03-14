@@ -1,29 +1,39 @@
-<p>acceuil</p>
 <?php if (!empty($_SESSION['id'])) { ?>
-    <form action="index.php?page=post" method="POST" enctype='multipart/form-data'>
+    <form action="index.php?page=post" method="POST" enctype='multipart/form-data' class="post_form">
         <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
-        <input type="file" name="fichier">
+        <label for="file" class="label-file">img</label>
+        <input type="file" id="file" name="fichier">
         <button id="post_button">post</button>
     </form>
-    <input type="text" id="search_input">
-    <div class="result_search_input">
-        <ul></ul>
-    </div>
     <?php foreach ($posts_list as $pl) : ?>
         <div class="post">
-            <p><?= $pl['pseudo'] ?></p>
+            <div class="author_post">
+                <p><?= $pl['pseudo'] ?></p>
+                <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
+                    <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
+                <?php } ?>
+            </div>
             <?php if (!empty($pl['bin'])) { ?>
-                <img src="data:image/jpeg;base64,<?= base64_encode($pl['bin']) ?>" alt="photo">
+                <div class="img_content">
+                    <img src="data:image/jpeg;base64,<?= base64_encode($pl['bin']) ?>" alt="photo">
+                </div>
             <?php } ?>
-            <p> <?= $pl['content'] ?></p>
-            <form action="index.php?page=comment&amp;id_post=<?= $pl['post_id'] ?>" method="POST">
-                <input type="text" placeholder="votre commentaire" name="comment_input">
-                <button>commenter</button>
-            </form>
-            <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
-            <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
-                <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
+            <div class="content_post">
+                <p><?= $pl['content'] ?></p>
+            </div>
+            <?php if (strlen($pl['content']) >= 250) { ?>
+                <div class="show_more">
+                    <p>voir plus</p>
+                </div>
             <?php } ?>
+            <div class="comment_post">
+                <form action="index.php?page=comment&amp;id_post=<?= $pl['post_id'] ?>" method="POST">
+                    <input type="text" placeholder="votre commentaire" name="comment_input">
+                    <button>commenter</button>
+                </form>
+                <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
+            </div>
         </div>
     <?php endforeach; ?>
 <?php } ?>
+

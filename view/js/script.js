@@ -1,12 +1,11 @@
 "use strict";
-// AJAX
 
+// AJAX
 function createAccount() {
   let pseudo = $(".pseudo_creation").val();
   let email = $(".email_creation").val();
   let password = $(".password_creation").val();
   let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
   if (email.match(mailformat)) {
     $.ajax({
       type: "POST",
@@ -84,20 +83,22 @@ function followOrUnfollow() {
 
 function deletePost() {
   let id = $(this).attr("value");
-  $.ajax({
-    type: "POST",
-    url: "view/php/ajax/delete_post.php",
-    data: {
-      id: id,
-    },
-    success: function (data) {
-      window.location.reload();
-    },
-  });
+  if (confirm("voulez vraiment supprimer ce post ?")) {
+    $.ajax({
+      type: "POST",
+      url: "view/php/ajax/delete_post.php",
+      data: {
+        id: id,
+      },
+      success: function (data) {
+        window.location.reload();
+      },
+    });
+  }
 }
+
 function showCommentary() {
   let id = $(this).attr("value");
-
   $.ajax({
     type: "GET",
     url: "view/php/ajax/commentary.php",
@@ -117,6 +118,20 @@ function showCommentary() {
   });
 }
 
+function showMore() {
+  let element = $(this).parent().children();
+  element.toggleClass("max_height");
+
+  if ($(this).children().text() == "voir plus") {
+    $(this).children().text("voir moins");
+  } else {
+    $(this).children().text("voir plus");
+  }
+}
+
+function openPostDiv() {
+  $(".post_form").slideToggle("");
+}
 $(function () {
   $(".button_create_account").on("click", createAccount);
   $(".button_connexion_account").on("click", connexionAccount);
@@ -124,4 +139,6 @@ $(function () {
   $(".follow_unfollow").on("click", followOrUnfollow);
   $(".delete_post").on("click", deletePost);
   $(".show_commentary").on("click", showCommentary);
+  $(".show_more").on("click", showMore);
+  $(".post_nav_button").on("click", openPostDiv);
 });

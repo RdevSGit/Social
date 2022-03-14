@@ -1,14 +1,157 @@
 * {
     box-sizing: border-box;
 }
-.post{
-    border:1px solid black;
-}
-img{
-    width:auto;
-    height: 200px;
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
 }
 
-@media screen and (min-width: 200px) and (max-width: 1024px) {}
+main {
+    padding-bottom: 60px;
+}
 
-@media screen and (min-width: 1024px) {}
+.post {
+    border-bottom: 1px solid black;
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+    background: lightslategrey;
+    border-radius: 5px;
+}
+
+
+
+li {
+    list-style-type: none;
+}
+
+nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+
+.post_form {
+    width: 100%;
+}
+
+.show_less {
+    background: red;
+    cursor: pointer;
+}
+
+.content_post {
+    max-height: 200px;
+    overflow: hidden;
+}
+.content_post p{
+    padding:5px;
+}
+.author_post,
+
+.show_more,
+.comment_post {
+    padding: 10px;
+}
+
+.max_height {
+    max-height: none;
+}
+
+.content_post {
+    display: flex;
+    flex-flow: column;
+}
+
+.img_content img {
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius:2px;
+    padding:5px;
+}
+
+.show_more {
+    border-top: 1px solid #636363;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.comment_post {
+    text-align: center;
+}
+
+.comment_post form {
+    display: flex;
+    flex-flow: column;
+}
+
+.show_commentary{
+    margin-top:5px;
+    padding:5px
+}
+
+
+@media screen and (min-width: 200px) and (max-width: 1024px) {
+
+    nav {
+        position: fixed;
+        bottom: 0px;
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        background: red;
+    }
+
+    .post_form {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        display: none;
+    }
+
+    .post_form textarea {
+        width: 100%;
+        resize: none;
+        padding: 10px;
+        border: none;
+    }
+
+    .post_form input {
+        display: none;
+    }
+
+    .post_form button {
+        padding: 5px;
+        background: #fff;
+        border: 1px solid #000;
+        text-align: center;
+    }
+
+    .post {
+        word-wrap: break-word;
+    }
+
+    .author_post {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    nav {
+        position: inherit;
+
+    }
+
+    nav ul {
+        justify-content: inherit;
+    }
+}
