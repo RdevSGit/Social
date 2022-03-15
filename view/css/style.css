@@ -19,10 +19,8 @@ main {
     width: 90%;
     margin: 20px auto;
     background: lightslategrey;
-    border-radius: 5px;
+    border-radius:3px;
 }
-
-
 
 li {
     list-style-type: none;
@@ -87,6 +85,7 @@ nav ul {
     text-align: center;
 }
 
+
 .comment_post form {
     display: flex;
     flex-flow: column;
@@ -95,6 +94,15 @@ nav ul {
 .show_commentary{
     margin-top:5px;
     padding:5px
+}
+.show_commentary ul{
+    background: #fcfcfc;
+    padding:5px;
+    margin : 5px auto;
+}
+.show_commentary a , .show_commentary li{
+    color:red;
+    text-align: left;
 }
 
 

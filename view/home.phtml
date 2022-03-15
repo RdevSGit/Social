@@ -26,14 +26,14 @@
                     <p>voir plus</p>
                 </div>
             <?php } ?>
+            <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
+
             <div class="comment_post">
                 <form action="index.php?page=comment&amp;id_post=<?= $pl['post_id'] ?>" method="POST">
                     <input type="text" placeholder="votre commentaire" name="comment_input">
                     <button>commenter</button>
                 </form>
-                <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
             </div>
         </div>
     <?php endforeach; ?>
 <?php } ?>
-

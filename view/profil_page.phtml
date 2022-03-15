@@ -3,16 +3,30 @@
     <li><a href="index.php?page=destroy_session"><?= $_SESSION['id'] ?> déconnexion</a></li>
     <?php foreach ($user_post_list as $upl) : ?>
         <div class="post">
+            <div class="author_post">
+                <a class="delete_post" value="<?= $upl['pid'] ?>">X</a>
+
+            </div>
             <?php if (!empty($upl['bin'])) { ?>
-                <img src="data:image/jpeg;base64,<?= base64_encode($upl['bin']) ?>" alt="">
+                <div class="img_content">
+                    <img src="data:image/jpeg;base64,<?= base64_encode($upl['bin']) ?>" alt="">
+                </div>
             <?php } ?>
-            <p><?= $upl['content'] ?></p>
-            <a class="delete_post" value="<?= $upl['pid'] ?>">X</a>
-            <form action="index.php?page=comment&amp;id_post=<?= $upl['pid'] ?>" method="POST">
-                <input type="text" placeholder="votre commentaire" name="comment_input">
-                <button>commenter</button>
-            </form>
-            <div class="show_commentary" value="<?= $upl['pid'] ?>">afficher les commentaires</div>
+            <div class="content_post">
+                <p><?= $upl['content'] ?></p>
+            </div>
+            <?php if (strlen($upl['content']) >= 250) { ?>
+                <div class="show_more">
+                    <p>voir plus</p>
+                </div>
+            <?php } ?>
+            <div class="comment_post">
+                <form action="index.php?page=comment&amp;id_post=<?= $upl['pid'] ?>" method="POST">
+                    <input type="text" placeholder="votre commentaire" name="comment_input">
+                    <button>commenter</button>
+                </form>
+                <div class="show_commentary" value="<?= $upl['pid'] ?>">afficher les commentaires</div>
+            </div>
         </div>
     <?php endforeach; ?>
 <?php else : ?>
@@ -29,12 +43,22 @@
             <?php if (!empty($fpl['bin'])) { ?>
                 <img src="data:image/jpeg;base64,<?= base64_encode($fpl['bin']) ?>" alt="">
             <?php } ?>
-            <p><?= $fpl['content'] ?></p>
-            <form action="index.php?page=comment&amp;id_post=<?= $fpl['pid'] ?>" method="POST">
-                <input type="text" placeholder="votre commentaire" name="comment_input">
-                <button>commenter</button>
-            </form>
+            <div class="content_post">
+                <p><?= $fpl['content'] ?></p>
+            </div>
+            <?php if (strlen($fpl['content']) >= 250) { ?>
+                <div class="show_more">
+                    <p>voir plus</p>
+                </div>
+            <?php } ?>
             <div class="show_commentary" value="<?= $fpl['pid'] ?>">afficher les commentaires</div>
+
+            <div class="comment_post">
+                <form action="index.php?page=comment&amp;id_post=<?= $fpl['pid'] ?>" method="POST">
+                    <input type="text" placeholder="votre commentaire" name="comment_input">
+                    <button>commenter</button>
+                </form>
+            </div>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>

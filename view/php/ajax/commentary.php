@@ -9,8 +9,10 @@ $query->execute(array($id));
 $comments = $query->fetchAll();
 
 foreach ($comments as $com) { ?>
-    <li><a href="index.php?page=profil&amp;id=<?= $com['id'] ?>"><?= $com['pseudo'] ?></a> </li>
-    <li><?= $com['content'] ?></li>
+    <ul>
+        <li><a href="index.php?page=profil&amp;id=<?= $com['id'] ?>"><?= $com['pseudo'] ?></a> </li>
+        <li><?= $com['content'] ?></li>
+    </ul>
 <?php
 
 }
