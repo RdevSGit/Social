@@ -13,11 +13,31 @@
 <body>
     <nav>
         <ul>
-            <li><a href="index.php?page=home">acceuil</a></li>
             <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
-                <li><a href="index.php?page=friends_list&amp;id=<?= $_SESSION['id'] ?>">follow</a></li>
-                <li><a class="user_session" href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>" value="<?= $_SESSION['id'] ?>">profil</a></li>
-                <li class="post_nav_button">poster</li>
+                <li><a href="index.php?page=home">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M21 20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20zm-2-1V9.978l-7-5.444-7 5.444V19h14z" />
+                        </svg>
+                    </a></li>
+                <li><a href="index.php?page=friends_list&amp;id=<?= $_SESSION['id'] ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M20 22H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1zm-1-2V4H5v16h14zM8 7h8v2H8V7zm0 4h8v2H8v-2zm0 4h8v2H8v-2z" />
+                        </svg>
+                    </a></li>
+                <li><a class="user_session" href="index.php?page=profil&amp;id=<?= $_SESSION['id'] ?>" value="<?= $_SESSION['id'] ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" />
+                        </svg>
+                    </a></li>
+                <li class="post_nav_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M5 19h1.414l9.314-9.314-1.414-1.414L5 17.586V19zm16 2H3v-4.243L16.435 3.322a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414L9.243 19H21v2zM15.728 6.858l1.414 1.414 1.414-1.414-1.414-1.414-1.414 1.414z" />
+                    </svg>
+                </li>
             <?php else : ?>
                 <li><a href="index.php?page=connexion_page">connexion</a></li>
                 <li><a href="index.php?page=create_account_page">créer un compte</a></li>
@@ -25,6 +45,26 @@
         </ul>
     </nav>
     <main>
+        <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'])) : ?>
+            <form action="index.php?page=post" method="POST" enctype='multipart/form-data' class="post_form">
+                <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="Votre post"></textarea>
+                <div class="button_post_area">
+                    <label for="file" class="label-file">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                        </svg>
+                    </label>
+                    <input type="file" id="file" name="fichier">
+                    <button id="post_button">publier</button>
+                    <svg class="post_nav_button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                    </svg>
+                </div>
+            </form>
+        <?php endif; ?>
+
         <?php include $template . ".phtml"; ?>
     </main>
     <script src="view/js/script.js"></script>

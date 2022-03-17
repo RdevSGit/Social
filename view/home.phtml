@@ -1,16 +1,14 @@
 <?php if (!empty($_SESSION['id'])) { ?>
-    <form action="index.php?page=post" method="POST" enctype='multipart/form-data' class="post_form">
-        <textarea name="post_area" class="post_area" cols="30" rows="10" placeholder="posts"></textarea>
-        <label for="file" class="label-file">img</label>
-        <input type="file" id="file" name="fichier">
-        <button id="post_button">post</button>
-    </form>
     <?php foreach ($posts_list as $pl) : ?>
         <div class="post">
             <div class="author_post">
-                <p><?= $pl['pseudo'] ?></p>
+                <a href="index.php?page=profil&amp;id=<?= $pl['id_user'] ?>"><?= $pl['pseudo'] ?></a>
                 <?php if ($pl['id_user'] == $_SESSION['id']) { ?>
-                    <a class="delete_post" value="<?= $pl['post_id'] ?>">X</a>
+                    <a class="delete_post" value="<?= $pl['post_id'] ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                        </svg></a>
                 <?php } ?>
             </div>
             <?php if (!empty($pl['bin'])) { ?>
@@ -19,7 +17,7 @@
                 </div>
             <?php } ?>
             <div class="content_post">
-                <p><?= $pl['content'] ?></p>
+                <p><?= htmlspecialchars($pl['content']) ?></p>
             </div>
             <?php if (strlen($pl['content']) >= 250) { ?>
                 <div class="show_more">
@@ -27,7 +25,6 @@
                 </div>
             <?php } ?>
             <div class="show_commentary" value="<?= $pl['post_id'] ?>">afficher les commentaires</div>
-
             <div class="comment_post">
                 <form action="index.php?page=comment&amp;id_post=<?= $pl['post_id'] ?>" method="POST">
                     <input type="text" placeholder="votre commentaire" name="comment_input">

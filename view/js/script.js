@@ -132,6 +132,8 @@ function showMore() {
 function openPostDiv() {
   $(".post_form").slideToggle("");
 }
+
+
 $(function () {
   $(".button_create_account").on("click", createAccount);
   $(".button_connexion_account").on("click", connexionAccount);

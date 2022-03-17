@@ -1,11 +1,17 @@
 <?php if (isset($_SESSION['id']) && !empty($_SESSION['id'] && $_GET["id"] == $_SESSION['id'])) : ?>
-    <li><?= $_SESSION['user'] ?></li>
-    <li><a href="index.php?page=destroy_session"><?= $_SESSION['id'] ?> déconnexion</a></li>
+    <div class="user_profil">
+        <li><?= $_SESSION['user'] ?></li>
+        <li><a href="index.php?page=destroy_session">déconnexion</a></li>
+    </div>
     <?php foreach ($user_post_list as $upl) : ?>
         <div class="post">
             <div class="author_post">
-                <a class="delete_post" value="<?= $upl['pid'] ?>">X</a>
-
+                <a class="delete_post" value="<?= $upl['pid'] ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                    </svg>
+                </a>
             </div>
             <?php if (!empty($upl['bin'])) { ?>
                 <div class="img_content">
@@ -13,7 +19,7 @@
                 </div>
             <?php } ?>
             <div class="content_post">
-                <p><?= $upl['content'] ?></p>
+                <p><?= htmlspecialchars($upl['content']) ?></p>
             </div>
             <?php if (strlen($upl['content']) >= 250) { ?>
                 <div class="show_more">
@@ -30,21 +36,23 @@
         </div>
     <?php endforeach; ?>
 <?php else : ?>
-    <a href=""><?= $user_info['email'] ?></a>
-    <a class="follow_unfollow" value="<?= $user_info['id'] ?>">
-        <?php if (empty($user_friends)) { ?>
-            follow
-        <?php } else { ?>
-            unfollow
-        <?php } ?>
-    </a>
+    <div class="user_profil">
+        <p><?= $user_info['pseudo'] ?></p>
+        <a class="follow_unfollow" value="<?= $user_info['id'] ?>">
+            <?php if (empty($user_friends)) { ?>
+                follow
+            <?php } else { ?>
+                unfollow
+            <?php } ?>
+        </a>
+    </div>
     <?php foreach ($follow_post_list as $fpl) : ?>
         <div class="post">
             <?php if (!empty($fpl['bin'])) { ?>
                 <img src="data:image/jpeg;base64,<?= base64_encode($fpl['bin']) ?>" alt="">
             <?php } ?>
             <div class="content_post">
-                <p><?= $fpl['content'] ?></p>
+                <p><?= htmlspecialchars($fpl['content']) ?></p>
             </div>
             <?php if (strlen($fpl['content']) >= 250) { ?>
                 <div class="show_more">
