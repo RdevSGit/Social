@@ -137,9 +137,11 @@ function openPostDiv() {
   $(".post_form").slideToggle("");
 }
 
-function test() {
+function scrollAction() {
   let scroll = this.scrollY;
 }
+
+
 $(function () {
   $(".button_create_account").on("click", createAccount);
   $(".button_connexion_account").on("click", connexionAccount);
@@ -149,5 +151,5 @@ $(function () {
   $(".show_commentary").on("click", showCommentary);
   $(".show_more").on("click", showMore);
   $(".post_nav_button").on("click", openPostDiv);
-  $(window).scroll(test);
+  $(window).scroll(scrollAction);
 });

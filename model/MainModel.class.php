@@ -12,12 +12,6 @@ class MainModel
 
     public function HomePagePosts($id)
     {
-        // $query = $this->bdd->prepare("SELECT posts.id as post_id, id_user, content, pseudo , bin FROM posts 
-        // JOIN follow ON posts.id_user = follow.id_followed 
-        // JOIN users on users.id = posts.id_user 
-        // LEFT JOIN media on posts.id = media.id_post
-        // JOIN commentary
-        // WHERE id_follower = ? ORDER BY posts.date desc");
         $query = $this->bdd->prepare("SELECT posts.id as post_id, posts.id_user, posts.content, pseudo , bin FROM posts 
         INNER JOIN follow ON posts.id_user = follow.id_followed 
         INNER JOIN users on users.id = posts.id_user 
