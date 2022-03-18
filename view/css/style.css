@@ -53,7 +53,6 @@ main {
     background: rgba(0, 0, 0, 0.6);
     display: none;
     width: 100%;
-
 }
 
 .post_form textarea {
@@ -121,14 +120,16 @@ main {
     border-radius: 3px;
 }
 
+.img_content {
+    width: 100%;
+}
+
 .img_content img {
     width: 100%;
     min-height: 200px;
     max-height: 200px;
     object-fit: cover;
     margin: 0 auto;
-    border-radius: 2px;
-    padding: 5px;
 }
 
 .content_post {
@@ -140,6 +141,10 @@ main {
 
 .max_height {
     max-height: none;
+    max-height: 50vh;
+    overflow-y: scroll;
+    scrollbar-color: #fff;
+    scrollbar-width: 5px;
 }
 
 .content_post p {
@@ -147,7 +152,6 @@ main {
 }
 
 .content_post,
-.img_content,
 .comment_post,
 .show_commentary,
 .author_post {
@@ -158,6 +162,7 @@ main {
     border-top: 1px solid #636363;
     margin-top: 10px;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .comment_post form {
@@ -168,15 +173,19 @@ main {
 .comment_post {
     border-radius: 0px 0px 3px 3px;
     text-align: center;
-
 }
 
 .show_commentary {
-    padding: 5px
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.show_commentary p {
+    text-transform: capitalize;
+    padding: 5px;
 }
 
 .show_commentary ul {
-    background: #fcfcfc;
     padding: 5px;
     margin: 5px auto;
 }
@@ -184,6 +193,49 @@ main {
 .show_commentary a,
 .show_commentary li {
     text-align: left;
+}
+
+.comments {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.comments ul {
+    padding: 20px;
+}
+
+.comment_post {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.comment_post form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: bottom;
+}
+
+.comment_post textarea {
+    resize: none;
+    width: 70%;
+    padding: 5px;
+    border-style: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.comment_post textarea::placeholder {
+    text-transform: capitalize;
+}
+
+.comment_post button {
+    width: fit-content;
+    padding: 10px;
+    text-transform: capitalize;
+    border-radius: 5px;
+    border-style: none;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
 }
 
 /* PROFIL PAGE */

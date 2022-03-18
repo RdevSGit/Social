@@ -99,6 +99,8 @@ function deletePost() {
 
 function showCommentary() {
   let id = $(this).attr("value");
+  let div = $(this).children("div");
+  let p = $(this).children("p");
   $.ajax({
     type: "GET",
     url: "view/php/ajax/commentary.php",
@@ -106,13 +108,14 @@ function showCommentary() {
       id: id,
     },
     success: function (data) {
-      let parent = $(".show_commentary[value=" + id + "]");
-      $(parent).append(data);
-      if (parent.hasClass("active")) {
-        parent.removeClass("active");
-        parent.children().remove();
+      div.append(data);
+      if (div.hasClass("active")) {
+        div.removeClass("active");
+        p.text("afficher les commentaires");
+        div.children().remove();
       } else {
-        parent.addClass("active");
+        div.addClass("active");
+        p.text("masquer les commentaires");
       }
     },
   });
@@ -121,6 +124,7 @@ function showCommentary() {
 function showMore() {
   let element = $(this).parent().children();
   element.toggleClass("max_height");
+  element.scrollTop(0);
 
   if ($(this).children().text() == "voir plus") {
     $(this).children().text("voir moins");
@@ -133,7 +137,9 @@ function openPostDiv() {
   $(".post_form").slideToggle("");
 }
 
-
+function test() {
+  let scroll = this.scrollY;
+}
 $(function () {
   $(".button_create_account").on("click", createAccount);
   $(".button_connexion_account").on("click", connexionAccount);
@@ -143,4 +149,5 @@ $(function () {
   $(".show_commentary").on("click", showCommentary);
   $(".show_more").on("click", showMore);
   $(".post_nav_button").on("click", openPostDiv);
+  $(window).scroll(test);
 });

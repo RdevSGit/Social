@@ -26,12 +26,15 @@
                     <p>voir plus</p>
                 </div>
             <?php } ?>
+            <div class="show_commentary" value="<?= $upl['pid'] ?>">
+                <div class="comments"></div>
+                <p>afficher les commentaires</p>
+            </div>
             <div class="comment_post">
                 <form action="index.php?page=comment&amp;id_post=<?= $upl['pid'] ?>" method="POST">
-                    <input type="text" placeholder="votre commentaire" name="comment_input">
+                    <textarea type="text" placeholder="votre commentaire" name="comment_input"></textarea>
                     <button>commenter</button>
                 </form>
-                <div class="show_commentary" value="<?= $upl['pid'] ?>">afficher les commentaires</div>
             </div>
         </div>
     <?php endforeach; ?>
@@ -59,11 +62,13 @@
                     <p>voir plus</p>
                 </div>
             <?php } ?>
-            <div class="show_commentary" value="<?= $fpl['pid'] ?>">afficher les commentaires</div>
-
+            <div class="show_commentary" value="<?= $fpl['pid'] ?>">
+                <div class="comments"></div>
+                <p>afficher les commentaires</p>
+            </div>
             <div class="comment_post">
                 <form action="index.php?page=comment&amp;id_post=<?= $fpl['pid'] ?>" method="POST">
-                    <input type="text" placeholder="votre commentaire" name="comment_input">
+                    <textarea type="text" placeholder="votre commentaire" name="comment_input"></textarea>
                     <button>commenter</button>
                 </form>
             </div>
